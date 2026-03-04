@@ -1,45 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>AI Agent Builder</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agent Builder - Build AI Agents in Minutes</title>
+<meta name="description" content="No-code platform to create, deploy and monetize AI agents. Build your own AI agents in minutes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-body{font-family:Arial;margin:0;background:#0b0b0b;color:white}
-.container{max-width:900px;margin:auto;padding:40px}
-h1{font-size:42px}
-.cta{background:#00ff88;color:black;padding:15px 25px;text-decoration:none;font-weight:bold}
-.card{background:#111;padding:25px;border-radius:10px;margin-top:20px}
-a.button{color:#00ff88}
+:root {
+  --primary: #00ff88;
+  --primary-dark: #00cc6a;
+  --bg: #0b0b0b;
+  --bg-secondary: #111;
+  --bg-tertiary: #1a1a1a;
+  --text: #ffffff;
+  --text-secondary: #a0a0a0;
+  --accent: #ffaa00;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+header { padding: 20px 0; border-bottom: 1px solid #222; }
+nav { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 24px; font-weight: 800; color: var(--primary); letter-spacing: -1px; }
+.hero { padding: 80px 0 60px; text-align: center; }
+.hero h1 { font-size: clamp(36px, 6vw, 64px); font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -2px; }
+.hero h1 span { color: var(--primary); }
+.hero p { font-size: 20px; color: var(--text-secondary); max-width: 600px; margin: 0 auto 40px; }
+.cta-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.cta { display: inline-block; padding: 16px 32px; font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 8px; transition: all 0.2s; }
+.cta-primary { background: var(--primary); color: #000; }
+.cta-primary:hover { background: var(--primary-dark); transform: translateY(-2px); }
+.cta-secondary { background: var(--bg-tertiary); color: var(--text); border: 1px solid #333; }
+.cta-secondary:hover { border-color: var(--primary); }
+.features { padding: 60px 0; background: var(--bg-secondary); }
+.features h2 { font-size: 36px; text-align: center; margin-bottom: 48px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+.card { background: var(--bg); padding: 32px; border-radius: 12px; border: 1px solid #222; transition: border-color 0.2s; }
+.card:hover { border-color: var(--primary); }
+.card h3 { font-size: 20px; margin-bottom: 12px; color: var(--primary); }
+.card p { color: var(--text-secondary); }
+.pricing { padding: 80px 0; }
+.pricing h2 { font-size: 36px; text-align: center; margin-bottom: 48px; }
+.price-card { background: var(--bg-secondary); padding: 40px; border-radius: 16px; text-align: center; border: 2px solid var(--primary); max-width: 400px; margin: 0 auto; }
+.price { font-size: 56px; font-weight: 800; color: var(--primary); }
+.price span { font-size: 18px; color: var(--text-secondary); font-weight: 400; }
+.price-features { list-style: none; margin: 24px 0; text-align: left; }
+.price-features li { padding: 8px 0; color: var(--text-secondary); }
+.price-features li::before { content: "✓"; color: var(--primary); margin-right: 8px; }
+footer { padding: 40px 0; text-align: center; color: var(--text-secondary); border-top: 1px solid #222; }
+@media (max-width: 600px) {
+  .hero { padding: 60px 0 40px; }
+  .hero h1 { font-size: 32px; }
+  .cta { width: 100%; text-align: center; }
+}
 </style>
 </head>
 <body>
+<header>
 <div class="container">
-<h1>AI Agent Builder</h1>
-<p>Build your own AI agents in minutes. No coding required.</p>
-<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:30px;">
-  <a class="cta" href="https://tally.so/r/9qd0LE?team=market-ai-agent-builder">Join Waitlist</a>
-  <a class="cta" href="https://buy.stripe.com/cNi6oHg8Wec2cpB5DW5Vu00?client_reference_id=market-ai-agent-builder" style="background:#ffaa00">Pay $29</a>
+<nav>
+<div class="logo">🤖 AI Agent Builder</div>
+<div>
+<a href="#pricing" class="cta cta-secondary" 10px 20px; font-size: style="padding: 14px;">Pricing</a>
+</div>
+</nav>
+</div>
+</header>
+<section class="hero">
+<div class="container">
+<h1>Build Your Own AI Agents<br><span>In Minutes</span></h1>
+<p>No coding required. Create, deploy and monetize AI agents with natural language. Join the agent economy.</p>
+<div class="cta-group">
+<a href="https://tally.so/r/9qd0LE?team=market-ai-agent-builder" class="cta cta-primary">Join Waitlist</a>
+<a href="#pricing" class="cta cta-secondary">See Pricing</a>
+</div>
+</div>
+</section>
+<section class="features">
+<div class="container">
+<h2>Why AI Agent Builder?</h2>
+<div class="grid">
+<div class="card">
+<h3>🎯 Natural Language</h3>
+<p>Describe what you want in plain English. Our AI builds the agent for you.</p>
 </div>
 <div class="card">
-<h2>Problem</h2>
-<p>Most people want AI agents but building them requires complex prompts and tooling.</p>
+<h3>🚀 One-Click Deploy</h3>
+<p>Deploy to API, webhook, or Slack bot instantly. No infrastructure needed.</p>
 </div>
 <div class="card">
-<h2>Solution</h2>
-<p>Our platform lets you create, deploy and monetize AI agents with one click.</p>
+<h3>📦 Templates</h3>
+<p>Start with pre-built templates for customer support, data analysis, and more.</p>
 </div>
 <div class="card">
-<h2>Demo</h2>
-<p>Demo video coming soon. Early users will get private walkthroughs.</p>
-</div>
-<div class="card">
-<h2>Pricing</h2>
-<p>$29 / month — <a class="button" href="https://buy.stripe.com/cNi6oHg8Wec2cpB5DW5Vu00?client_reference_id=market-ai-agent-builder">Secure payment</a></p>
-</div>
-<div class="card">
-<h2>FAQ</h2>
-<p>Early access users get priority support. Ping us after signup.</p>
+<h3>💰 Monetize</h3>
+<p>Share or sell your agents on our marketplace. Earn from your creations.</p>
 </div>
 </div>
+</div>
+</section>
+<section class="pricing" id="pricing">
+<div class="container">
+<h2>Simple Pricing</h2>
+<div class="price-card">
+<div class="price">$29<span>/month</span></div>
+<ul class="price-features">
+<li>1 AI Agent</li>
+<li>100 API calls/month</li>
+<li>Basic templates</li>
+<li>Email support</li>
+</ul>
+<a href="https://buy.stripe.com/cNi6oHg8Wec2cpB5DW5Vu00?client_reference_id=market-ai-agent-builder" class="cta cta-primary" style="width: 100%;">Get Started</a>
+</div>
+</div>
+</section>
+<footer>
+<div class="container">
+<p>© 2026 AI Labs. All rights reserved.</p>
+</div>
+</footer>
 </body>
 </html>
