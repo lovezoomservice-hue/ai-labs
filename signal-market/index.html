@@ -1,81 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Signal Market - Subscribe to World Intelligence</title>
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0b0b0b;color:#fff;line-height:1.6}
-    .container{max-width:1100px;margin:0 auto;padding:0 24px}
-    h1{font-size:clamp(36px,6vw,64px);font-weight:800;line-height:1.1;margin-bottom:20px}
-    h1 span{color:#00ff88}
-    .hero{text-align:center;padding:80px 0 60px}
-    .hero p{font-size:20px;color:#888;max-width:600px;margin:0 auto 40px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;padding:40px 0}
-    .card{background:#111;border:1px solid #222;border-radius:16px;padding:32px;text-align:center;transition:all 0.3s}
-    .card:hover{border-color:#00ff88;transform:translateY(-4px)}
-    .card.featured{border-color:#00ff88;background:#0a1a0a}
-    .price{font-size:48px;font-weight:800;color:#00ff88}
-    .price span{font-size:16px;color:#666}
-    .features{list-style:none;margin:24px 0;text-align:left}
-    .features li{padding:8px 0;color:#aaa}
-    .features li::before{content:"✓";color:#00ff88;margin-right:8px}
-    .btn{display:inline-block;background:#00ff88;color:#000;padding:14px 28px;font-size:16px;font-weight:600;border:none;border-radius:8px;cursor:pointer;width:100%;text-decoration:none}
-    .btn:hover{background:#00cc6a}
-    header{padding:20px 0;border-bottom:1px solid #222}
-    nav{display:flex;justify-content:space-between;align-items:center}
-    .logo{font-size:24px;font-weight:800;color:#00ff88}
-    footer{text-align:center;padding:40px 0;color:#666;border-top:1px solid #222;margin-top:60px}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signal Market - World Intelligence for AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#000;--surface:#0a0a0a;--surface-elevated:#141414;--border:#222;--primary:#00ff88;--primary-dim:#00cc6a;--text:#fff;--text-dim:#666;--text-sub:#888;--accent:#ff3366;--gradient:linear-gradient(135deg,#00ff88 0%,#00ccff 100%)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* Navigation */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(0,0,0,0.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+.logo{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{color:var(--text-sub);text-decoration:none;font-size:14px;font-weight:500;transition:color 0.3s}
+.nav-links a:hover{color:var(--primary)}
+.cta-nav{background:var(--primary);color:#000;padding:10px 20px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;transition:all 0.3s}
+.cta-nav:hover{transform:scale(1.05);box-shadow:0 0 30px rgba(0,255,136,0.3)}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 30%,rgba(0,255,136,0.1) 0%,transparent 50%);animation:pulse 8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:0.5}50%{opacity:1}}
+.hero-content{position:relative;z-index:1;text-align:center;max-width:900px;margin:0 auto}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(48px,8vw,96px);font-weight:800;line-height:1.05;margin-bottom:24px;letter-spacing:-2px}
+.hero h1 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:20px;color:var(--text-sub);max-width:600px;margin:0 auto 48px}
+.hero-badges{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:var(--surface-elevated);border:1px solid var(--border);border-radius:100px;font-size:13px;color:var(--text-dim)}
+.badge-dot{width:8px;height:8px;background:var(--primary);border-radius:50%;animation:pulse 2s infinite}
+
+/* Live Demo */
+.demo-section{padding:80px 0;background:var(--surface)}
+.demo-window{background:var(--surface-elevated);border:1px solid var(--border);border-radius:16px;overflow:hidden;max-width:900px;margin:0 auto}
+.demo-header{display:flex;gap:8px;padding:12px 16px;background:var(--bg);border-bottom:1px solid var(--border)}
+.demo-dot{width:12px;height:12px;border-radius:50%;background:var(--border)}
+.demo-dot.red{background:#ff5f56}
+.demo-dot.yellow{background:#ffbd2e}
+.demo-dot.green{background:#27c93f}
+.demo-content{padding:24px}
+.signal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.signal-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:16px;transition:all 0.3s}
+.signal-card:hover{border-color:var(--primary);transform:translateY(-2px)}
+.signal-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.signal-source{font-size:12px;color:var(--text-sub);font-weight:600}
+.signal-time{font-size:11px;color:var(--text-dim)}
+.signal-title{font-size:14px;font-weight:500;margin-bottom:8px;line-height:1.4}
+.signal-meta{display:flex;gap:12px;font-size:12px}
+.signal-tag{color:var(--primary);background:rgba(0,255,136,0.1);padding:4px 8px;border-radius:4px}
+
+/* Features */
+.features{padding:120px 0}
+.section-header{text-align:center;margin-bottom:64px}
+.section-label{font-size:12px;color:var(--primary);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;font-weight:600}
+.section-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(36px,5vw,56px);font-weight:700}
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.feature-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;transition:all 0.3s}
+.feature-card:hover{border-color:var(--primary);transform:translateY(-4px)}
+.feature-icon{width:48px;height:48px;background:var(--gradient);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px}
+.feature-title{font-size:20px;font-weight:600;margin-bottom:12px}
+.feature-desc{color:var(--text-sub);font-size:15px}
+
+/* Pricing */
+.pricing{padding:120px 0;background:var(--surface)}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1000px;margin:0 auto}
+.price-card{background:var(--surface-elevated);border:1px solid var(--border);border-radius:20px;padding:40px;text-align:center;transition:all 0.3s}
+.price-card:hover{transform:translateY(-8px)}
+.price-card.featured{border-color:var(--primary);background:linear-gradient(180deg,rgba(0,255,136,0.05) 0%,transparent 100%)}
+.price-card .popular{background:var(--primary);color:#000;font-size:11px;font-weight:700;padding:4px 12px;border-radius:100px;display:inline-block;margin-bottom:16px}
+.price-amount{font-family:'Space Grotesk',sans-serif;font-size:56px;font-weight:700;margin-bottom:8px}
+.price-amount span{font-size:18px;color:var(--text-dim)}
+.price-name{font-size:18px;font-weight:600;margin-bottom:24px}
+.price-features{list-style:none;margin-bottom:32px;text-align:left}
+.price-features li{padding:12px 0;border-bottom:1px solid var(--border);color:var(--text-sub);display:flex;align-items:center;gap:12px}
+.price-features li::before{content:'✓';color:var(--primary);font-weight:600}
+.price-btn{display:block;width:100%;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:12px;color:var(--text);text-decoration:none;font-weight:600;transition:all 0.3s}
+.price-btn:hover{background:var(--primary);color:#000;border-color:var(--primary)}
+.price-card.featured .price-btn{background:var(--primary);color:#000;border-color:var(--primary)}
+
+/* CTA */
+.cta-section{padding:120px 0;text-align:center}
+.cta-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:700;margin-bottom:24px}
+.cta-subtitle{font-size:18px;color:var(--text-sub);margin-bottom:48px}
+.cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--gradient);color:#000;padding:16px 32px;border-radius:12px;font-weight:600;font-size:16px;text-decoration:none;transition:all 0.3s}
+.btn-primary:hover{transform:scale(1.05);box-shadow:0 0 40px rgba(0,255,136,0.4)}
+.btn-secondary{background:transparent;border:1px solid var(--border);color:var(--text);padding:16px 32px;border-radius:12px;font-weight:600;font-size:16px;text-decoration:none;transition:all 0.3s}
+.btn-secondary:hover{border-color:var(--primary);color:var(--primary)}
+
+/* Footer */
+footer{padding:40px 0;border-top:1px solid var(--border)}
+.footer-inner{display:flex;justify-content:space-between;align-items:center}
+.footer-copy{color:var(--text-dim);font-size:14px}
+.footer-links{display:flex;gap:24px}
+.footer-links a{color:var(--text-sub);text-decoration:none;font-size:14px}
+
+/* Animations */
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.animate{animation:fadeIn 0.6s ease-out forwards}
+.animate-delay-1{animation-delay:0.1s}
+.animate-delay-2{animation-delay:0.2s}
+.animate-delay-3{animation-delay:0.3s}
+</style>
 </head>
 <body>
-<header><div class="container"><nav><div class="logo">📡 Signal Market</div></nav></div></header>
-<section class="hero"><div class="container">
-  <h1>Give Your AI <span>World Intelligence</span></h1>
-  <p>Subscribe to real-time signals for market, news, macro & trends. Let your AI know what's happening in the world.</p>
-</div></section>
+<nav>
 <div class="container">
-<div class="grid">
-<div class="card">
-<h3>🚀 Starter</h3>
-<div class="price">$9<span>/mo</span></div>
-<ul class="features">
+<div class="nav-inner">
+<div class="logo">◈ Signal Market</div>
+<div class="nav-links">
+<a href="#features">Features</a>
+<a href="#pricing">Pricing</a>
+<a href="#demo">Demo</a>
+<a href="#" class="cta-nav">Get Started</a>
+</div>
+</div>
+</nav>
+
+<section class="hero">
+<div class="container">
+<div class="hero-content">
+<div class="hero-badges animate">
+<span class="badge"><span class="badge-dot"></span>Live Data</span>
+<span class="badge">4 Signal Packs</span>
+<span class="badge">99.9% Uptime</span>
+</div>
+<h1 class="animate animate-delay-1">Give Your AI <span>World Intelligence</span></h1>
+<p class="animate animate-delay-2">Subscribe to real-time signals for market, news, macro & trends. Let your AI know what's happening in the world.</p>
+<div class="cta-buttons animate animate-delay-3">
+<a href="#pricing" class="btn-primary">Start Free Trial</a>
+<a href="#demo" class="btn-secondary">See Demo</a>
+</div>
+</div>
+</div>
+</section>
+
+<section class="demo-section" id="demo">
+<div class="container">
+<div class="section-header">
+<div class="section-label">Live Demo</div>
+<h2 class="section-title">See Signals in Action</h2>
+</div>
+<div class="demo-window">
+<div class="demo-header">
+<div class="demo-dot red"></div>
+<div class="demo-dot yellow"></div>
+<div class="demo-dot green"></div>
+</div>
+<div class="demo-content">
+<div class="signal-grid">
+<div class="signal-card">
+<div class="signal-card-header">
+<span class="signal-source">📈 MARKET</span>
+<span class="signal-time">2m ago</span>
+</div>
+<div class="signal-title">BTC breaks $95K resistance as institutional inflow continues</div>
+<div class="signal-meta"><span class="signal-tag">High Confidence</span></div>
+</div>
+<div class="signal-card">
+<div class="signal-card-header">
+<span class="signal-source">📰 NEWS</span>
+<span class="signal-time">5m ago</span>
+</div>
+<div class="signal-title">Fed signals potential rate cut in Q2 amid cooling inflation</div>
+<div class="signal-meta"><span class="signal-tag">Medium Confidence</span></div>
+</div>
+<div class="signal-card">
+<div class="signal-card-header">
+<span class="signal-source">🔍 TREND</span>
+<span class="signal-time">12m ago</span>
+</div>
+<div class="signal-title">AI agent tools search volume up 340% YoY</div>
+<div class="signal-meta"><span class="signal-tag">Trending</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="features" id="features">
+<div class="container">
+<div class="section-header">
+<div class="section-label">Features</div>
+<h2 class="section-title">Everything Your AI Needs</h2>
+</div>
+<div class="feature-grid">
+<div class="feature-card">
+<div class="feature-icon">📡</div>
+<div class="feature-title">Real-Time Signals</div>
+<div class="feature-desc">Market, news, macro & trend data updated hourly. Your AI stays informed.</div>
+</div>
+<div class="feature-card">
+<div class="feature-icon">🔗</div>
+<div class="feature-title">API First</div>
+<div class="feature-desc">Simple REST API. Get signals in JSON. Integrate in minutes.</div>
+</div>
+<div class="feature-card">
+<div class="feature-icon">📊</div>
+<div class="feature-title">Evidence Logs</div>
+<div class="feature-desc">Every signal comes with raw data, timestamps, and proof paths.</div>
+</div>
+<div class="feature-card">
+<div class="feature-icon">🎯</div>
+<div class="feature-title">Quality Gates</div>
+<div class="feature-desc">Automated quality checks. No stale data. No hallucinated signals.</div>
+</div>
+<div class="feature-card">
+<div class="feature-icon">🔄</div>
+<div class="feature-title">Historical Data</div>
+<div class="feature-desc">Access up to 30 days of signal history. Backtest your strategies.</div>
+</div>
+<div class="feature-card">
+<div class="feature-icon">🛡️</div>
+<div class="feature-title">99.9% Uptime</div>
+<div class="feature-desc">Enterprise-grade reliability. Daily automated health checks.</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="pricing" id="pricing">
+<div class="container">
+<div class="section-header">
+<div class="section-label">Pricing</div>
+<h2 class="section-title">Simple, Transparent</h2>
+</div>
+<div class="pricing-grid">
+<div class="price-card">
+<div class="price-name">Starter</div>
+<div class="price-amount">$9<span>/mo</span></div>
+<ul class="price-features">
 <li>1 Signal Pack</li>
 <li>Daily Digest</li>
 <li>7-Day History</li>
-<li>API Access</li>
+<li>Basic API Access</li>
 </ul>
-<a href="https://buy.stripe.com/cNi6oHg8Wec2cpB5DW5Vu00" class="btn">Subscribe</a>
+<a href="#" class="price-btn">Start Free</a>
 </div>
-<div class="card featured">
-<h3>⚡ Pro</h3>
-<div class="price">$29<span>/mo</span></div>
-<ul class="features">
+<div class="price-card featured">
+<span class="popular">Most Popular</span>
+<div class="price-name">Pro</div>
+<div class="price-amount">$29<span>/mo</span></div>
+<ul class="price-features">
 <li>All 4 Signal Packs</li>
 <li>Hourly Updates</li>
 <li>30-Day History</li>
-<li>API Access</li>
+<li>Full API Access</li>
 <li>Evidence Logs</li>
+<li>Priority Support</li>
 </ul>
-<a href="https://buy.stripe.com/cNi6oHg8Wec2cpB5DW5Vu00" class="btn">Subscribe</a>
+<a href="#" class="price-btn">Start Free Trial</a>
 </div>
-<div class="card">
-<h3>🏢 Team</h3>
-<div class="price">$99<span>/mo</span></div>
-<ul class="features">
+<div class="price-card">
+<div class="price-name">Team</div>
+<div class="price-amount">$99<span>/mo</span></div>
+<ul class="price-features">
 <li>Everything in Pro</li>
 <li>Unlimited History</li>
 <li>Custom Sources</li>
-<li>Priority Support</li>
 <li>Webhook Alerts</li>
+<li>Dedicated Support</li>
+<li>SLA Guarantee</li>
 </ul>
-<a href="https://buy.stripe.com/cNi6oHg8Wec2cpB5DW5Vu00" class="btn">Subscribe</a>
+<a href="#" class="price-btn">Contact Sales</a>
 </div>
 </div>
 </div>
-<footer><div class="container">
-<p>© 2026 Signal Market. Built for AI Agents & Teams.</p>
-</div></footer>
+</section>
+
+<section class="cta-section">
+<div class="container">
+<h2 class="cta-title">Ready to power your AI?</h2>
+<p class="cta-subtitle">Join thousands of AI developers building smarter agents.</p>
+<div class="cta-buttons">
+<a href="#" class="btn-primary">Start Free Trial</a>
+<a href="#" class="btn-secondary">Talk to Sales</a>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="container">
+<div class="footer-inner">
+<div class="footer-copy">© 2026 Signal Market. All rights reserved.</div>
+<div class="footer-links">
+<a href="#">Privacy</a>
+<a href="#">Terms</a>
+<a href="#">API Docs</a>
+</div>
+</div>
+</footer>
 </body>
 </html>
